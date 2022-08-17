@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../iconos/css/all.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap4.min.css"/>
+	<link rel="stylesheet" href="../css/tablas.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<style>
+		#mydatatable tfoot input {
+			width: 100% !important;
+		}
+
+		#mydatatable tfoot {
+			display: table-header-group !important;
+		}
+	</style>
+	<title>El Gran Madrugón - Dashboard Cliente</title>
+</head>
+<body>
+	<a href="carrito.html" class="btn-wsp">
+		<i class="fas fa-cart-plus"></i>
+	</a>		<div class="container-fluid">
+
+		<div class="row colorNav">
+
+			<div class="col-md-12">
+
+				<nav class="navbar navbar-expand-md navbar-light colorNav">
+
+					<a class="navbar-brand" href="../dashboardCliente.html"><img src="../img/logo3.png" class="LogoNav"></a>
+
+					<form class="form-inline">
+						<input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0 colorNav" type="submit"><i class="fa-solid fa-magnifying-glass colorNav"></i></button>
+					</form>
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+						<ul class="navbar-nav align-items-center">
+
+							<li class="nav-item mr-5">
+
+								<a class="nav-link letranav text-white" href="../dashboardCliente.html"><i class="fa-solid fa-house-user mr-2"></i>Inicio</a>
+
+								<a class="nav-link letranav text-white" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Salir</a>
+
+							</li>
+
+							<li class="nav-item mr-5">
+
+								<img src="../img/cliente.jpg" class="LogoNav rounded-circle colorNav">
+
+								<h4 class="text-center">Diego Ramirez</h4>
+
+								<h5 class="text-center">Cliente</h5>
+
+							</li>					
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="row">
+
+			<div class="col-md-3 colorNav2 d-flex align-items-center">
+
+				<nav class="navbar d-md-block collapse navbar-dark colorNav2" id="navbarSupportedContent">
+
+					<h1 class="text-center mt-5 letrasidebar">Funciones</h1>
+					<ul class="navbar-nav mt-2">
+
+						<li class="nav-item"><a class="nav-link" href="lista-pedidos.html"><p class="letrafunciones mr-1"><i class="fa-solid fa-list mr-2"></i>Lista de pedidos activos</p></a></li>
+
+						<li class="nav-item"><a class="nav-link" href="historial.pedidos.html"><p class="letrafunciones"><i class="fa-solid fa-clock-rotate-left mr-2"></i>Historial de pedidos</p></a></li>
+
+
+						<li class="nav-item"><a class="nav-link" href="carrito.html"><p class="letrafunciones"><i class="fa-brands fa-product-hunt mr-2"></i>Carrito de compras</p></a></li>
+
+						<li class="nav-item"><a class="nav-link" href="Catalogo/inicio/Catalogo.html"><p class="letrafunciones"><i class="fa-brands fa-product-hunt mr-2"></i>Productos</p></a></li>
+
+					</ul>
+
+				</nav>
+			</div>
+			<div class="col-md-9">
+
+				<div class="row mt-5 justify-content-center">
+
+					<div class="col-md-11">
+						<h1 class="text-center mb-5">Carrito de compras</h1>
+						<div class="table-responsive" id="mydatatable-container">
+							<table class="table table-striped table-bordered table-hover" id="mydatatable">
+								<thead class="encabezado">
+									<tr>
+										<th>Número de producto</th>
+										<th>Tipo de producto</th>
+										<th>Talla</th>
+										<th>Nombre del producto</th>
+										<th>Referencia</th>
+										<th>Cantidad de productos</th>
+										<th>Precio</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Precio Total</th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<tr>
+										<td></td>
+										<td><button type="submit" id="btnpagar" class="btn btn-secondary btn-block text-center">Pagar</button></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>Precio Total</td>
+										<td>325.000</td>
+										<td><button type="submit" id="borrototal" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Pantalón</td>
+										<td>34</td>
+										<td>Jean Skinny Negro</td>
+										<td>3214</td>
+										<td>1</td>
+										<td>45.000</td>
+										<td><button type="submit" id="b1" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Camiseta</td>
+										<td>XL</td>
+										<td>Camiseta negra con estampado</td>
+										<td>5314</td>
+										<td>2</td>
+										<td>80.000</td>
+										<td><button type="submit" id="b2" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Maleta</td>
+										<td>No tiene</td>
+										<td>Maleta Adidas con camuflado</td>
+										<td>9584</td>
+										<td>1</td>
+										<td>90.000</td>									
+										<td><button type="submit" id="b3" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Calzado</td>
+										<td>42</td>
+										<td>Zapatillas adidas azules</td>
+										<td>1254</td>
+										<td>1</td>
+										<td>65.000</td>
+										<td><button type="submit" id="b4" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Accesorio</td>
+										<td>No tiene</td>
+										<td>Correa negra elegante</td>
+										<td>2645</td>
+										<td>1</td>
+										<td>45.000</td>									
+										<td><button type="submit" id="b5" class="btn btn-secondary btn-block text-center"><i class="fa-solid fa-trash font text-center"></i></button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-md-10 text-center p-4">
+							<h1> Aqui tenemos una grafica de cuanto cuesta cada producto con respecto al total de la compra</h1>
+							<canvas id="ventas" width="50" height="60"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="../js/bootstrap.bundle.min.js"></script>
+
+		<!-- Datatables -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+		<script src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.7/dist/sweetalert2.all.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#mydatatable tfoot th').each(function () {
+					var title = $(this).text();
+					$(this).html('<input type="text" placeholder="Filtrar..." />');
+				});
+
+				var table = $('#mydatatable').DataTable({
+					"dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+					"responsive": false,
+					"language": {
+						"url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+					},
+					"order": [
+					[0, "desc"]
+					],
+					"initComplete": function () {
+						this.api().columns().every(function () {
+							var that = this;
+
+							$('input', this.footer()).on('keyup change', function () {
+								if (that.search() !== this.value) {
+									that
+									.search(this.value)
+									.draw();
+								}
+							});
+						})
+					},
+				});
+			});
+		</script>
+		<script>
+			const data = {
+				labels: [
+				'Jean Skinny Negro',
+				'Zapatillas adidas azules',
+				'Maleta Adidas con camuflado',
+				'Camiseta negra con estampado',
+				'Correa negra elegante'
+				],
+				datasets: [{
+					label: 'Gráfica de precios',
+					data: [45000, 80000, 90000, 65000, 45000],
+					backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(54, 162, 235)',
+					'rgb(255, 205, 86)',
+					'rgba(112, 224, 0)',
+					'rgba(190, 10, 255)'
+					],
+					hoverOffset: 2
+				}]
+			};
+
+			const config = {
+				type: 'pie',
+				data: data,
+				options: {
+					layout: {
+						padding: 100	
+					}
+				}
+			};
+		</script>
+		<script>
+			const ventas = new Chart(
+				document.getElementById('ventas'),
+				config
+				);
+			</script>
+			<script src="alertas.js"></script>
+
+		</body>
+		</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 mt-5 text">Lista de ventas</h1>
+		<h:form>
+			<div
+				class="shadow-8 border-round surface-overlay font-bold p-5 bg-white">
+				<p:toolbar>
+					<p:toolbarGroup frozenrows="2">
+						<p:commandButton value="New" icon="pi pi-plus"
+							action="#{ventaBean.nuevo()}" ajax="false"
+							styleClass="ui-button-success" style="margin-right: .5rem">
+						</p:commandButton>
+						<p:commandButton value="Export" icon="pi pi-upload"
+							styleClass="ui-button-help" ajax="false"
+							action="#{ventaBean.exportar()}">
+						</p:commandButton>
+					</p:toolbarGroup>
+					<p:toolbarGroup>
+						<div class="p-d-flex p-jc-between p-ai-center">
+							<div>
+								<p:commandButton value="Limpiar Modal" actionListener="#{ventaBean.limpiar()}" update="modal"/>
+								<p:remoteCommand name="rc" update="modal"/>
+							</div>
+						</div>
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<div class="p-d-flex p-jc-between p-ai-center">
+							<div>
+								<p:commandButton id="toggler" type="button" value="Columns"
+									icon="pi pi-align-justify" />
+								<p:columnToggler datasource="tabla" trigger="toggler" />
+							</div>
+						</div>
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:dataTable value="#{ventaBean.listaVentas}" id="tabla" var="venta"
+					widgetVar="tabla" border="1" rows="10" paginator="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+					rowsPerPageTemplate="5,10,{ShowAll|'All'}" reflow="true"
+					styleClass="mt-4" draggableColumns="true" draggableRows="true"
+					showGridlines="true" resizableColumns="true" size="small">
+
+					<p:column headerText="Id" filterBy="#{venta.id}">
+						<h:outputText value="#{venta.id}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.precio}">
+						<f:facet name="header">Valor total</f:facet>
+						<h:outputText value="#{venta.precio}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.estado}">
+						<f:facet name="header">Estado de la venta</f:facet>
+						<h:outputText value="#{venta.estado}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.fecha}">
+						<f:facet name="header">Fecha</f:facet>
+						<h:outputText value="#{venta.fecha}"></h:outputText>
+					</p:column>
+					<p:column exportable="false">
+						<f:facet name="header">Acciones</f:facet>
+						<p:commandButton value="Seleccionar venta"
+							actionListener="#{ventaBean.verDetalle(venta.id)}" onclick="PF('dlg3').show();" oncomplete="rc()">
+						</p:commandButton>
+						<p:growl id="message" showDetail="true" />
+					</p:column>
+				</p:dataTable>
+			</div>
+			<p:dialog header="Header" widgetVar="dlg3" height="400" width="900"
+				showEffect="fade" modal="true">
+				<p:dataTable value="#{ventaBean.detalles}" id="modal" var="detalle">
+
+					<p:column headerText="Id" filterBy="#{detalle.idDetalle}">
+						<h:outputText value="#{detalle.idDetalle}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle.cantidad}">
+						<f:facet name="header">Cantidad de productos</f:facet>
+						<h:outputText value="#{detalle.cantidad}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle.subTotal}">
+						<f:facet name="header">Subtotal</f:facet>
+						<h:outputText value="#{detalle.subTotal}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle.idProducto.id_producto}">
+						<f:facet name="header">ID del producto</f:facet>
+						<h:outputText value="#{detalle.idProducto.id_producto}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle.idProducto.nombre}">
+						<f:facet name="header">Nombre del producto</f:facet>
+						<h:outputText value="#{detalle.idProducto.nombre}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle.idVenta.id}">
+						<f:facet name="header">ID de la venta</f:facet>
+						<h:outputText value="#{detalle.idVenta.id}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

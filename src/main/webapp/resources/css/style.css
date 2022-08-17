@@ -1,0 +1,316 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Playfair+Display:ital,wght@1,500&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,500&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,500&family=Righteous&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap')
+	;
+
+.btn-wsp {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	line-height: 63px;
+	bottom: 25px;
+	right: 25px;
+	background: #000;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 35px;
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+	z-index: 100;
+	transition: all 300ms ease;
+}
+
+.btn-wsp:hover {
+	background: #20ba5a;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px) {
+	.btn-wsp {
+		width: 63px;
+		height: 63px;
+		line-height: 66px;
+	}
+}
+
+* {
+	margin: 0;
+}
+
+
+.texto-verde{
+	color: #24b11d !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #666;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+.body {
+	background: #F3F2F7;
+}
+
+.bg-none {
+	background: none !important;
+	border: 2px black solid !important;
+}
+
+.titulo {
+	font-size: 2.5vw;
+	color: #fff;
+	font-family: 'Bebas Neue', cursive;
+}
+
+.fondo1 {
+	background-image: url("../img/fondo1.jpeg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 100%;
+}
+
+.fondo2 {
+	background-image: url("../img/pie.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: auto;
+}
+
+.negro {
+	color: #000;
+}
+
+.margen1 {
+	margin-top: 12vw;
+}
+
+.margenform {
+	margin-top: 5vw;
+}
+
+.letra2 {
+	font-family: 'Playfair Display', serif;
+	font-size: 6vw;
+	color: #fff;
+}
+
+.letra3 {
+	font-family: 'Playfair Display', serif;
+	font-size: 5vw;
+	color: #fff;
+}
+
+.letrahead {
+	font-size: 5vw;
+	font-family: 'Righteous', cursive;
+}
+
+.carousel-inner>.item {
+	position: relative;
+	display: none;
+	-webkit-transition: 0.6s ease-in-out left;
+	-moz-transition: 0.6s ease-in-out left;
+	-o-transition: 0.6s ease-in-out left;
+	transition: 0.6s ease-in-out left;
+}
+
+.carousel>.carousel-inner>.carousel-item>img {
+	height: 45vw;
+	width: 100%;
+}
+
+.carousel {
+	height: 45vw;
+	width: 100%;
+}
+
+.letracarrusel {
+	font-family: 'Righteous', cursive;
+	font-size: 4vw;
+	color: #2196F3;
+}
+
+.letracarrusel2 {
+	font-family: 'Righteous', cursive;
+	font-size: 3vw;
+	color: #2196F3;
+}
+
+.pieimg {
+	height: 15vw;
+	width: 30vw;
+}
+
+.bordes {
+	height: 10vw;
+}
+
+.fondo3 {
+	background: transparent;
+}
+
+.pietexto {
+	font-size: 1.3vw;
+}
+
+.redesimg {
+	height: 5vw;
+	width: 5vw;
+}
+
+.redesimg2 {
+	height: 7vw;
+	width: 7vw;
+}
+
+.pietexto2 {
+	font-size: 1.25vw;
+}
+
+.letrac {
+	font-size: 3vw;
+}
+
+.letrafooter {
+	font-size: 4vw;
+	font-family: 'Righteous', cursive;
+}
+
+.marginf {
+	margin-top: 4vw;
+}
+
+.letra4 {
+	font-size: 2.5vw;
+	font-family: 'Righteous', cursive;
+}
+
+.letradesa {
+	font-size: 2vw;
+	font-family: 'Righteous', cursive;
+}
+
+.margent {
+	margin-top: 5vw;
+}
+
+.tamañoerror {
+	height: 38vw;
+	width: 80%;
+}
+
+.LogoNav {
+	height: 5em;
+	width: 10em;
+}
+
+.colorNav {
+	background-attachment: scroll, fixed ;
+	background-color: #666 !important;
+	border: none !important;
+}
+
+.hvr {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: background-color, box-shadow, transform;
+  transition-property: background-color, box-shadow, transform;
+}
+.hvr:hover, .hvr:focus, .hvr:active {
+	background-color: #777;
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+}
+
+.letranav {
+	font-size: 2vw;
+	font-family: 'Bitter', serif;
+}
+
+.frasenav {
+	font-size: 2em;
+	font-family: 'Bitter', serif;
+}
+
+.colorNav2 {
+	background: #2E3338;
+}
+
+.l {
+	font-size: 2px;
+}
+
+.fondodash {
+	background: #F4F3F7;
+}
+
+.colorcard {
+	background: #B9FBC0;
+}
+
+.letrafunciones2 {
+	font-size: 1.5em;
+	font-family: 'Bitter', serif;
+}
+
+.colorform {
+	background: #D4B3FA;
+}
+
+.dashimg {
+	height: 100%;
+	width: 100%;
+}
+
+.side {
+	background: #03045E;
+}
+
+.letras {
+	color: #CAF0F8;
+}
+
+.tamañobtn {
+	font-size: 2vw;
+}
+
+.bg{
+	background: none !important;
+	border: none !important;
+}
+

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>El Gran Madrugón</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet library="css" name="main.css" />
+	<link rel="icon" href="resources/img/logo3.png" />
+</h:head>
+<h:body class="homepage">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header">
+
+			<!-- Inner -->
+			<div class="inner">
+				<header>
+					<h1>
+						<a href="index.xhtml" id="logo" class="text-black">El Gran
+							Madrugón</a>
+					</h1>
+					<hr />
+					<p>Bienvenido a nuestra pagina Web</p>
+				</header>
+				<footer>
+					<a href="#banner" class="button circled scrolly">Iniciemos</a>
+				</footer>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="index.xhtml" class="hvr-grow-shadow">Home</a></li>
+					<li><a href="login.xhtml" class="hvr-grow-shadow">Inicia
+							Sesión</a></li>
+					<li><a href="registro.xhtml" class="hvr-grow-shadow">Registrarse</a></li>
+					<li><a href="#footer" class="hvr-grow-shadow">Encuentranos</a></li>
+					<li><a href="#banner" class="hvr-grow-shadow">Productos</a></li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<!-- Banner -->
+		<section id="banner">
+			<header>
+				<h2>
+					Bienvenido a la zona de <strong>productos</strong>.
+				</h2>
+				<p>
+					En nuestro almacén encontrarás los mejores <strong>precios</strong>
+					del mercado.
+				</p>
+			</header>
+		</section>
+
+		<!-- Carousel -->
+		<section class="carousel">
+			<div class="reel">
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/camisa.jpg" /></a>
+					<header>
+						<h3>
+							<a>Camisas</a>
+						</h3>
+					</header>
+					<p>Es una prenda de vestir tanto formal como informal de tela
+						que cubre el torso y brazos, usualmente tiene mangas, cuello y
+						botones en el frente</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/carrusel5.jpg" /></a>
+					<header>
+						<h3>
+							<a>Correas</a>
+						</h3>
+					</header>
+					<p>Es un accesorio moderno de tejidos artificiales, que sirve
+						para sostener, tensar, etc. Hay muchas formas de correa, para
+						propósitos diferentes.</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/chaqueta.jpg" /></a>
+					<header>
+						<h3>
+							<a>Chaquetas</a>
+						</h3>
+					</header>
+					<p>es una prenda de vestir de calle ajustada al torso, con
+						manga larga, solapas y bolsillos, tanto interiores como exteriores
+						abierta por delante</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/jean1.jpg" /></a>
+					<header>
+						<h3>
+							<a>Pantalones / Jeanes</a>
+						</h3>
+					</header>
+					<p>Es una prenda de vestir que se ajusta a la cintura y llega a
+						una altura variable de la pierna o hasta los tobillos, cubriendo
+						cada pierna por separado.</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/camisetas.jpg" /></a>
+					<header>
+						<h3>
+							<a>Camisetas</a>
+						</h3>
+					</header>
+					<p>Es una prenda de ropa interior de mangas cortas, cuello
+						redondo o de "V". Existen diversos diseños, varían sus
+						características básicas</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/varios.jpg" /></a>
+					<header>
+						<h3>
+							<a>Varios</a>
+						</h3>
+					</header>
+					<p>Múltiples prendas y objetos para completar el outfit diario,
+						consta de maletas, gorras, entre otros muchos que te haran lucir
+						en cualquier lugar</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/zapatos1.jpg" /></a>
+					<header>
+						<h3>
+							<a>Zapatos / Tenis</a>
+						</h3>
+					</header>
+					<p>Es un accesorio pedestre de la vestimenta hecho con la
+						intención de proveer protección y comodidad al pie, mientras este
+						realiza varias actividades.</p>
+				</article>
+
+				<article>
+					<a class="image featured"><h:graphicImage library="images"
+							value="resources/img/nueva/accesorios2.jpg" /></a>
+					<header>
+						<h3>
+							<a>Accesorios</a>
+						</h3>
+					</header>
+					<p>Son detalles que le damos al estilismo para ponerle el
+						broche final al mismo. En este caso, no son para nada
+						indispensables.</p>
+				</article>
+
+			</div>
+		</section>
+
+		<!-- Main -->
+		<div class="wrapper style2">
+
+			<article id="main" class="container special">
+				<a class="image featured"><img src="images/pic06.jpg" alt="" /></a>
+				<header>
+					<h2>El Gran Madrugón de Santo Domingo</h2>
+					<p>Estamos ubicados en la localidad de Ciudad Bolivar
+						exactamente en el barrio Santo Domingo de Bogotá.</p>
+				</header>
+				<p>El Gran Madrugón el cuál se encuentra en Bogotá D.C
+					específicamente en la localidad de Ciudad Bolívar es una pequeña
+					empresa la cuál desde hace más de 20 años se dedica a la venta de
+					ropa y calzado para toda la familia con excelente calidad y
+					precios, además de un excelente ambiente laboral para que día tras
+					día el servicio al cliente sea el mejor. El Gran Madrugón siempre
+					se ha destacado por ser el negocio de la gente pues se encuentra en
+					un barrio popular de la ciudad lo que le permite a aquellas
+					personas comprar su vestuario y esto es muy importante ya que es
+					una carta de presentación donde quiera que vayas. La empresa El
+					Gran Madrugón desde sus inicios y hasta el día de hoy ha crecido
+					dentro de un ámbito familiar, busca expandirse y tener el local
+					como propio para así llegar a más personas y volverse una marca
+					nacional. Con el paso del tiempo fueron llegando nuevos productos
+					los cuales fueron incorporados al almacén para la venta, los cuales
+					suplían las necesidades que los clientes requerían y con está
+					acción los clientes volvían para quedarse. Siempre se ha
+					caracterizado por ser una empresa con gran responsabilidad laboral
+					y esto hace que no le fallen a sus clientes.</p>
+			</article>
+
+		</div>
+
+		<!-- Features -->
+		<div class="wrapper style1">
+
+			<section id="features" class="container special">
+				<header>
+					<h2>Estas son las metas de nuestra empresa</h2>
+					<p>Esperamos creer exponencialmente con el pasar del tiempo, en
+						la misma medida que el almacén gana reconocimiento</p>
+				</header>
+				<div class="row">
+					<article class="4u 12u(mobile) special">
+						<h:graphicImage library="images" value="resources/img/Mision.png"
+							class="image featured" />
+						<header>
+							<h3>Misión</h3>
+						</header>
+						<p>Contribuir al crecimiento económico y social de la ciudad
+							mediante la venta de todos nuestros productos, comprometidos con
+							la alta calidad en nuestros productos y excelencia en servicio al
+							cliente y así llegar a más personas para alcanzar más ganancias.</p>
+					</article>
+					<article class="4u 12u(mobile) special">
+						<h:graphicImage library="images"
+							value="resources/img/objetivo.jpg" class="image featured" />
+						<header>
+							<h3>Objetivo</h3>
+						</header>
+						<p>Y él objetivo general de todo estos es posicionarnos en
+							muchos más lugares para además de generar más empleo, generar la
+							oportunidad de que las personas del común creen y crezcan con su
+							emprendimiento utilizando y vendiendo nuestra marca propia de
+							ropa y calzado.</p>
+					</article>
+					<article class="4u 12u(mobile) special">
+						<h:graphicImage library="images" value="resources/img/vision.jpg"
+							class="image featured" />
+						<header>
+							<h3>Visión</h3>
+						</header>
+						<p>En el 2030 seremos una empresa líder en marcas de ropa
+							posicionando cada marca en Medellín, Cartagena y Cali teniendo
+							así más productividad lo que genera más empleo y así contribuir
+							con la economía del país.</p>
+					</article>
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+
+					<!-- Tweets -->
+					<section class="4u 12u(mobile)">
+						<header>
+							<h2>
+								Desarrolladores
+							</h2>
+						</header>
+						<ul class="divided">
+							<li>
+								<article class="tweet">
+									Paula Andrea Triana <br/><span class="timestamp">paula.trianaramirez@gmail.com</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									Diego Alejandro Ramirez <br/><span class="timestamp">dr595442@gmail.com</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									Daniel Stiven Rojas <br/><span class="timestamp">rojas021210@gmail.com</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									David Leonardo Valbuena <br/><span class="timestamp">david310702@gmail.com</span>
+								</article>
+								
+							</li>
+						</ul>
+					</section>
+
+					<!-- Posts -->
+					<section class="4u 12u(mobile) centrar">
+						<header  class="centrar">
+							<h2 class="centrar">Ubicación</h2>
+						</header>
+
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53509.14355607917!2d-74.20565159978115!3d4.57769609269927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9fa5803a5255%3A0xe31cb4a1cb998ef5!2sEl%20Gran%20Madrug%C3%B3n%20de%20Santo%20Domingo!5e0!3m2!1ses-419!2sco!4v1656380080195!5m2!1ses-419!2sco"
+							style="border: 0;" allowfullscreen="" loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<h:outputScript library="js" name="jquery.min.js" />
+	<h:outputScript library="js" name="jquery.dropotron.min.js" />
+	<h:outputScript library="js" name="jquery.scrolly.min.js" />
+	<h:outputScript library="js" name="jquery.onvisible.min.js" />
+	<h:outputScript library="js" name="skel.min.js" />
+	<h:outputScript library="js" name="util.js" />
+	<h:outputScript library="js" name="main.js" />
+</h:body>
+</html>

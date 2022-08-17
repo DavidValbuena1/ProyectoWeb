@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+	<h:outputStylesheet library="css" name="main2.css" />
+	<title>Inicio de sesión</title>
+	<link rel="icon" href="resources/img/logo3.png" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
+
+	<script src="https://kit.fontawesome.com/ffec4ec2ed.js"></script>
+</h:head>
+
+<h:body class="bg-dark">
+
+
+	<section>
+		<div class="row g-0">
+			<div class="col-lg-8 d-none d-lg-block bg-dark">
+				<div class="align-self-center w-100 px-lg-5">
+					<h1 class="font-weight-bold text-white text-center mt-2 mb-2">Bienvenido
+						por primera vez</h1>
+					<h:form class="mb-2">
+						<div class="row">
+
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Tipo
+									de Documento</label>
+								<h:selectOneMenu
+									value="#{loginBean.tipoDocumento.idTipoDocumento}"
+									class="form-control bg-dark-x border-0 text-light mb-2">
+									<f:selectItems value="#{loginBean.listaDocumentos}"
+										var="documentos" itemValue="#{documentos.idTipoDocumento}"
+										itemLabel="#{documentos.nombre}" />
+								</h:selectOneMenu>
+							</div>
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Número
+									de documento</label>
+								<p:inputText
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tu número de documento"
+									value="#{loginBean.usuario.num_Identificacion_usuario}" />
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Nombre(s)</label>
+								<p:inputText value="#{loginBean.usuario.nombres}"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tus nombres" />
+							</div>
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Apellido(s)</label>
+								<p:inputText
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tus apellidos"
+									value="#{loginBean.usuario.apellidos}" />
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Correo
+									Electrónico</label>
+								<p:inputText type="email" value="#{loginBean.usuario.correo}"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tu email" />
+							</div>
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Telefono</label>
+								<p:inputText
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tu telefono"
+									value="#{loginBean.usuario.telefono}" />
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Dirección</label>
+								<p:inputText value="#{loginBean.usuario.direccion}"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tu dirección" />
+							</div>
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Fecha
+									de nacimiento</label>
+
+								<p:datePicker value="#{loginBean.usuario.fecha}"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									pattern="yyyy/MM/dd" placeholder="2002/07/31"
+									monthNavigator="true" yearNavigator="true" numberOfMonths="2"
+									autocomplete="off" />
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Contraseña</label>
+								<p:inputText type="password"
+									value="#{loginBean.usuario.contraseña}"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Ingresa tu contraseña" />
+							</div>
+							<div class="col-6 mb-1">
+								<label class="form-label font-weight-bold text-white">Confirmar
+									Contraseña</label>
+								<p:inputText type="password"
+									class="form-control bg-dark-x border-0 text-light mb-2"
+									placeholder="Confirma tu contraseña"
+									value="#{loginBean.usuario.confirmar}" />
+							</div>
+						</div>
+						<h:commandButton action="#{loginBean.registrarUsuario()}"
+							class="btn btn-primary w-100" value="Registrate" update="message" />
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+				</div>
+				<div class="text-center px-lg-5 w-100">
+					<p class="d-inline-block mb-0 text-muted">¿Ya tienes una
+						cuenta?</p>
+					<a href="login.xhtml" class="text-light font-weight-bold text-decoration-none">Inicia
+						sesión!</a>
+				</div>
+			</div>
+			<div
+				class="col-lg-4 img-1 d-flex flex-column align-items-end min-vh-100">
+			</div>
+		</div>
+	</section>
+	<!-- Optional JavaScript -->
+	<!-- Popper.js first, then Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+		integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"></script>
+</h:body>
+</html>

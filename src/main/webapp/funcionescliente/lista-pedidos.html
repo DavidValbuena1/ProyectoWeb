@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../iconos/css/all.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap4.min.css"/>
+	<link rel="stylesheet" href="../css/tablas.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<style>
+		#mydatatable tfoot input {
+			width: 100% !important;
+		}
+
+		#mydatatable tfoot {
+			display: table-header-group !important;
+		}
+	</style>
+	<title>El Gran Madrugón - Dashboard Cliente</title>
+</head>
+<body>
+	<a href="carrito.html" class="btn-wsp">
+		<i class="fas fa-cart-plus"></i>
+	</a>		<div class="container-fluid">
+
+		<div class="row colorNav">
+
+			<div class="col-md-12">
+
+				<nav class="navbar navbar-expand-md navbar-light colorNav">
+
+					<a class="navbar-brand" href="../dashboardCliente.html"><img src="../img/logo3.png" class="LogoNav"></a>
+
+					<form class="form-inline">
+						<input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0 colorNav" type="submit"><i class="fa-solid fa-magnifying-glass colorNav"></i></button>
+					</form>
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+						<ul class="navbar-nav align-items-center">
+
+							<li class="nav-item mr-5">
+
+								<a class="nav-link letranav text-white" href="../dashboardCliente.html"><i class="fa-solid fa-house-user mr-2"></i>Inicio</a>
+
+								<a class="nav-link letranav text-white" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Salir</a>
+
+							</li>
+
+							<li class="nav-item mr-5">
+
+								<img src="../img/cliente.jpg" class="LogoNav rounded-circle colorNav">
+
+								<h4 class="text-center">Diego Ramirez</h4>
+
+								<h5 class="text-center">Cliente</h5>
+
+							</li>					
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="row">
+
+			<div class="col-md-3 colorNav2 d-flex align-items-center">
+
+				<nav class="navbar d-md-block collapse navbar-dark colorNav2" id="navbarSupportedContent">
+
+					<h1 class="text-center mt-5 letrasidebar">Funciones</h1>
+
+					<ul class="navbar-nav mt-2">
+						<li class="nav-item"><a class="nav-link" href="lista-pedidos.html"><p class="letrafunciones mr-1"><i class="fa-solid fa-list mr-2"></i>Lista de pedidos activos</p></a></li>
+
+						<li class="nav-item"><a class="nav-link" href="historial.pedidos.html"><p class="letrafunciones"><i class="fa-solid fa-clock-rotate-left mr-2"></i>Historial de pedidos</p></a></li>
+
+
+						<li class="nav-item"><a class="nav-link" href="carrito.html"><p class="letrafunciones"><i class="fa-brands fa-product-hunt mr-2"></i>Carrito de compras</p></a></li>
+
+						<li class="nav-item"><a class="nav-link" href="Catalogo/inicio/Catalogo.html"><p class="letrafunciones"><i class="fa-brands fa-product-hunt mr-2"></i>Productos</p></a></li>
+
+					</ul>
+
+				</nav>
+			</div>
+
+			<div class="col-md-9">
+
+				<div class="row mt-5 justify-content-center">
+
+					<div class="col-md-11">
+						<h1 class="text-center mb-5">Lista de pedidos activos</h1>
+						<div class="table-responsive" id="mydatatable-container">
+							<table class="table table-striped table-bordered table-hover" id="mydatatable">
+								<thead class="encabezado">
+									<tr>
+										<th>ID Pedido</th>
+										<th>Nombres</th>
+										<th>Apellidos</th>
+										<th>ID Cliente</th>
+										<th>Metodo de Pago</th>
+										<th>Cantidad de productos</th>
+										<th>Referencias</th>
+										<th>Dirección</th>
+										<th>Información Adicional</th>
+										<th>Nombre del Vendedor</th>
+										<th>ID Vendedor</th>
+										<th>Valor del pedido</th>
+										<th>Estado</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+										<th>Filtrar..</th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En reparto</td>
+										
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Esperando Confirmación</td>
+										
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Esperando Confirmación</td>
+										
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Esperando Confirmación</td>
+										
+									</tr>
+									<tr>
+										<td>13</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>14</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparado</td>
+										
+									</tr>
+									<tr>
+										<td>15</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>16</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>17</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Esperando Confirmación</td>
+										
+									</tr>
+									<tr>
+										<td>18</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>19</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>20</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>21</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>22</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+									<tr>
+										<td>23</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>24</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Entregado</td>
+										
+									</tr>
+									<tr>
+										<td>25</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>En Reparto</td>
+										
+									</tr>
+									<tr>
+										<td>26</td>
+										<td>David Leonardo</td>
+										<td>Valbuena Alzate </td>
+										<td>1234</td>
+										<td>Efectivo</td>
+										<td>3</td>
+										<td>123425<br>123423</td>
+										<td>Calle 71A #78B 23 Sur</td>
+										<td>Ninguna</td>
+										<td>Paula Triana</td>
+										<td>123432</td>
+										<td>130.000</td>
+										<td>Preparando</td>
+										
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-center m-5">
+						<h1> Aqui tenemos una grafica del total de pedidos realizados mes a mes del año 2022</h1>
+						<canvas id="ventas" width="100" height="60"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="../js/bootstrap.bundle.min.js"></script>
+
+	<!-- Datatables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+	<script src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+	<!-- Buttons -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.53/build/pdfmake.min.js"></script>
+
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.53/build/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.7/dist/sweetalert2.all.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#mydatatable tfoot th').each(function () {
+				var title = $(this).text();
+				$(this).html('<input type="text" placeholder="Filtrar.." />');
+			});
+
+			var table = $('#mydatatable').DataTable({
+				"dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+				"responsive": false,
+				"language": {
+					"url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+				},
+				"order": [
+				[0, "desc"]
+				],
+				"initComplete": function () {
+					this.api().columns().every(function () {
+						var that = this;
+
+						$('input', this.footer()).on('keyup change', function () {
+							if (that.search() !== this.value) {
+								that
+								.search(this.value)
+								.draw();
+							}
+						});
+					})
+				},
+				"buttons": ['csv', 'excel', 'pdf', 'print']
+			});
+		});
+	</script>
+	<script>
+		const labels = [
+		'Enero',
+		'Febrero',
+		'Marzo',
+		'Abril',
+		'Mayo',
+		'Junio',
+		'Julio',
+		'Agosto',
+		'Septiembre',
+		'Octubre',
+		'Noviembre',
+		'Diciembre'
+		];
+
+		const data = {
+			labels: labels,
+			datasets: [{
+				label: 'Ventas mes a mes del año 2022',
+				data: [200, 242, 324, 452, 142,521,231,54, 123,241,432,1232],
+				backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(75, 192, 192, 0.2)'
+				],
+				borderColor: [
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)',
+				'rgba(255, 99, 132, 1)',
+				'rgba(75, 192, 192, 1)'
+				],
+				borderWidth: 1
+			}]
+		};
+
+		const config = {
+			type: 'bar',
+			data: data,
+			options: {
+				layout: {
+					padding: {
+						left: 100,
+						right: 100
+					}
+				}
+			},
+		};
+	</script>
+	<script>
+		const ventas = new Chart(
+			document.getElementById('ventas'),
+			config
+			);
+		</script>
+		<script src="alertas.js"></script>
+
+	</body>
+	</html>

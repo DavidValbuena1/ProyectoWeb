@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<link rel="stylesheet"
+		href="https://unpkg.com/primeflex@3.1.2/primeflex.css" />
+	<ui:define name="contenido">
+		<h:form class="mt-3 mr-5 ml-5 mb-5 align-items-center" id="form2">
+			<div class="grid">
+				<div class="md:col-11">
+					<div class="formgrid grid">
+
+						<div class="bg-white shadow-8">
+							<h1 class="text-center m-5">Datos del productos</h1>
+							<div class="grid mr-5 ml-5 mb-3">
+								<div class="col-12 md:col-8">
+									<h:outputText for="sel" class="m-3"
+										value="Id del producto a buscar"></h:outputText>
+									<br />
+									<p:selectOneMenu id="sel"
+										value="#{productoBean.producto.id_producto}" effect="fold"
+										filter="true" filterMatchMode="startsWith" class="m-3">
+										<f:selectItem itemLabel="Selecciona uno" itemValue="" />
+										<f:selectItems value="#{productoBean.listaP}" var="p"
+											itemLabel="#{p.nombre} - ID: #{p.id_producto}"
+											itemValue="#{p.id_producto}" />
+									</p:selectOneMenu>
+									<p:commandButton class="m-3" value="Buscar producto"
+										actionListener="#{productoBean.encontrar2()}"
+										update="s,s1,message2,s2"></p:commandButton>
+								</div>
+
+								<div class="col-12 md:col-4">
+									<h:outputLabel class="m-3" for="s2" value="Nombre del producto"></h:outputLabel>
+									<p:inputText class="m-3" id="s2"
+										value="#{productoBean.producto.nombre}"></p:inputText>
+								</div>
+							</div>
+							<div class="grid mr-5 ml-5 mb-3">
+								<div class="col-12 md:col-4">
+									<h:outputLabel class="m-3" for="s" value="Cantidad Disponible"></h:outputLabel>
+									<p:inputText class="m-3" id="s"
+										value="#{productoBean.producto.quantity}"></p:inputText>
+								</div>
+								<div class="col-12 md:col-4">
+									<h:outputLabel class="m-3" for="s1" value="Precio por unidad"></h:outputLabel>
+									<p:inputText class="m-3" id="s1"
+										value="#{productoBean.producto.price}"></p:inputText>
+								</div>
+								<div class="col-12 md:col-4">
+									<p:commandButton class="mb-1" value="Agregar producto"
+										actionListener="#{productoBean.agregar()}" update="s s1 s2 tabla"
+										></p:commandButton><br/>
+									<p:commandButton value="Limpiar Comprobante"
+										actionListener="#{productoBean.limpiar()}" update="s s1 s2 tabla"
+										></p:commandButton>
+									<p:growl id="message2" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<h:form id="tabla">
+			<p:dataTable value="#{productoBean.productos}" var="producto"
+				widgetVar="tabla" border="1" rows="10" reflow="true"
+				styleClass="mt-4" draggableColumns="true" draggableRows="true"
+				showGridlines="true" size="small">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{producto.id_producto}"></h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Nombre del producto</f:facet>
+					<h:outputText value="#{producto.nombre}"></h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Cantidad</f:facet>
+					<h:outputText value="#{producto.quantity}"></h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Precio por unidad</f:facet>
+					<h:outputText value="#{producto.price}"></h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Subtotal</f:facet>
+					<h:outputText value="#{producto.precioTotal}"></h:outputText>
+				</p:column>
+				<p:column exportable="false">
+					<f:facet name="header">Acciones</f:facet>
+					<p:commandButton class="ui-button-warning rounded-button"
+						icon="pi pi-trash" update="message tabla" actionListener="#{productoBean.quitarDetalle(producto.id_producto)}">
+						<p:confirm header="Confirmación"
+							message="¿Seguro quieres borrar esto?" icon="pi pi-info-circle" />
+					</p:commandButton>
+
+					<p:growl id="message" showDetail="true" />
+				</p:column>
+			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+				<p:commandButton value="Si" type="button"
+					styleClass="ui-confirmdialog-yes" />
+			</p:confirmDialog>
+			<p:growl id="message" showDetail="true" />
+			<p:commandButton value="Generar Venta"
+				actionListener="#{productoBean.generarVenta()}" update="form2 tabla"></p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

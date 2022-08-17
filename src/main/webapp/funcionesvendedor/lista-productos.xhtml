@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 mt-5 text">Lista de productos</h1>
+		<h:form>
+			<div
+				class="shadow-8 border-round surface-overlay font-bold p-5 bg-white">
+				<p:toolbar>
+					<p:toolbarGroup frozenrows="2">
+						<p:commandButton value="New" icon="pi pi-plus"
+							action="#{productoBean.nuevo()}" ajax="false"
+							styleClass="ui-button-success" style="margin-right: .5rem">
+						</p:commandButton>
+						<p:commandButton value="Export" icon="pi pi-upload"
+							styleClass="ui-button-help" ajax="false"
+							action="#{productoBean.exportar()}">
+
+						</p:commandButton>
+					</p:toolbarGroup>
+
+					<p:toolbarGroup align="right">
+						<div class="p-d-flex p-jc-between p-ai-center">
+							<div>
+								<p:commandButton id="toggler" type="button" value="Columns"
+									icon="pi pi-align-justify" />
+								<p:columnToggler datasource="tabla" trigger="toggler" />
+							</div>
+						</div>
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:dataTable value="#{productoBean.encontrarTodos()}" id="tabla"
+					var="producto" widgetVar="tabla" border="1" rows="10"
+					paginator="true" paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+					rowsPerPageTemplate="5,10,{ShowAll|'All'}" reflow="true"
+					styleClass="mt-4" draggableColumns="true" draggableRows="true"
+					showGridlines="true" resizableColumns="true" scrollable="true"
+					scrollWidth="200%" size="small">
+
+					<p:column headerText="Id" filterBy="#{producto.id_producto}">
+						<h:outputText value="#{producto.id_producto}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.type.nombre}">
+						<f:facet name="header">Tipo</f:facet>
+						<h:outputText value="#{producto.type.nombre}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.size}">
+						<f:facet name="header">Tallas</f:facet>
+						<h:outputText value="#{producto.size}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.nombre}">
+						<f:facet name="header">Nombre del producto</f:facet>
+						<h:outputText value="#{producto.nombre}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.reference}">
+						<f:facet name="header">Referencias</f:facet>
+						<h:outputText value="#{producto.reference}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.quantity}">
+						<f:facet name="header">Cantidad</f:facet>
+						<h:outputText value="#{producto.quantity}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.price}">
+						<f:facet name="header">Precio por unidad</f:facet>
+						<h:outputText value="#{producto.price}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.precioTotal}">
+						<f:facet name="header">Precio total</f:facet>
+						<h:outputText value="#{producto.precioTotal}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.date}">
+						<f:facet name="header">Fecha de entrada</f:facet>
+						<h:outputText value="#{producto.date}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{producto.proveedor.nombre}">
+						<f:facet name="header">Nombre del proveedor</f:facet>
+						<h:outputText value="#{producto.proveedor.nombre}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

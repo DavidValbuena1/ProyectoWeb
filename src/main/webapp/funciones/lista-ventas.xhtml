@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 mt-2 text">Lista de ventas</h1>
+		<h:form id="form1">
+			<div
+				class="shadow-8 border-round surface-overlay p-5 bg-white">
+				<p:toolbar>
+					<p:toolbarGroup frozenrows="2">
+						<p:commandButton value="Nuevo" icon="pi pi-plus"
+							action="#{ventaBean.nuevo()}" ajax="false"
+							styleClass="ui-button-primary" style="margin-right: .5rem">
+						</p:commandButton>
+						<p:commandButton value="Excel" icon="pi pi-file-excel"
+							styleClass="ui-button-success">
+							<p:dataExporter type="xlsxstream" target="tabla"
+								fileName="Lista de ventas" visibleOnly="true"
+								options="#{ventaBean.excelOpt}" />
+						</p:commandButton>
+						<p:commandButton value="PDF" icon="pi pi-file-pdf"
+							styleClass="ml-2 ui-button-danger">
+							<p:dataExporter type="pdf" target="tabla"
+								fileName="Lista de ventas" visibleOnly="true"
+								options="#{ventaBean.pdfOpt}" />
+						</p:commandButton>
+						<p:remoteCommand name="rc" update="modal" />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<div>
+							<p:commandButton value="Reiniciar Tabla" styleClass="mr-2"
+								action="#{ventaBean.reiniciarTabla}" update="@form" />
+							<p:commandButton id="toggler" type="button" value="Columnas"
+								icon="pi pi-align-justify" />
+							<p:columnToggler datasource="tabla" trigger="toggler">
+								<p:ajax event="toggle" listener="#{ventaBean.onToggle}" />
+							</p:columnToggler>
+						</div>
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:dataTable value="#{ventaBean.listaVentas}" id="tabla" var="venta"
+					widgetVar="tabla" border="1" rows="10" paginator="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+					rowsPerPageTemplate="5,10,15,25,50,{ShowAll|'Todos'}" reflow="true"
+					styleClass="mt-4 text-center" draggableColumns="true"
+					draggableRows="true" showGridlines="true" resizableColumns="true"
+					size="small">
+
+					<p:column headerText="Id" filterBy="#{venta.id}"
+						visible="#{ventaBean.list[0]}" exportable="#{ventaBean.list[0]}">
+						<h:outputText value="#{venta.id}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.precio}" visible="#{ventaBean.list[1]}"
+						exportable="#{ventaBean.list[1]}">
+						<f:facet name="header">Valor total</f:facet>
+						<h:outputText value="#{venta.precio}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true"
+								maxFractionDigits="0" type="currency" locale="es_CO" />
+						</h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.estado}" visible="#{ventaBean.list[2]}"
+						exportable="#{ventaBean.list[2]}">
+						<f:facet name="header">Estado de la venta</f:facet>
+						<h:outputText value="#{venta.estado}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{venta.fecha}" visible="#{ventaBean.list[3]}"
+						exportable="#{ventaBean.list[3]}">
+						<f:facet name="header">Fecha</f:facet>
+						<h:outputText value="#{venta.fecha}"></h:outputText>
+					</p:column>
+					<p:column visible="#{ventaBean.list[4]}" exportable="false">
+						<f:facet name="header">Acciones</f:facet>
+						<p:commandButton icon="pi pi-pencil"
+							styleClass="mr-1 edit-button rounded-button ui-button-success"
+							action="#{ventaBean.encontrar(venta.id)}">
+						</p:commandButton>
+						<p:commandButton class="mr-1 ui-button-warning rounded-button"
+							icon="pi pi-trash" update="message,tabla"
+							action="#{ventaBean.borrar(venta.id)}">
+							<p:confirm header="Confirmacion"
+								message="¿Seguro quieres borrar esto?" icon="pi pi-info-circle" />
+						</p:commandButton>
+						<p:commandButton icon="pi pi-arrow-up-right"
+							class="ui-button-help rounded-button"
+							actionListener="#{ventaBean.verDetalle(venta.id)}"
+							onclick="PF('dlg3').show();" oncomplete="rc()">
+						</p:commandButton>
+						<p:growl id="message" showDetail="true" />
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</div>
+			<p:dialog header="Detalles de la venta" widgetVar="dlg3" height="400"
+				width="900" showEffect="fade" modal="true">
+				<p:dataTable value="#{ventaBean.detalles}" id="modal" var="detalle2">
+
+					<p:column headerText="Id" filterBy="#{detalle2.idDetalle}">
+						<h:outputText value="#{detalle2.idDetalle}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle2.cantidad}">
+						<f:facet name="header">Cantidad de productos</f:facet>
+						<h:outputText value="#{detalle2.cantidad}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle2.subTotal}">
+						<f:facet name="header">Subtotal</f:facet>
+						<h:outputText value="#{detalle2.subTotal}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true"
+								maxFractionDigits="0" type="currency" locale="es_CO" />
+						</h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle2.idProducto.id_producto}">
+						<f:facet name="header">ID del producto</f:facet>
+						<h:outputText value="#{detalle2.idProducto.id_producto}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle2.idProducto.nombre}">
+						<f:facet name="header">Nombre del producto</f:facet>
+						<h:outputText value="#{detalle2.idProducto.nombre}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{detalle2.idVenta.id}">
+						<f:facet name="header">ID de la venta</f:facet>
+						<h:outputText value="#{detalle2.idVenta.id}"></h:outputText>
+					</p:column>
+					<p:column exportable="false">
+						<f:facet name="header">Acciones</f:facet>
+						<p:commandButton icon="pi pi-pencil"
+							styleClass="edit-button rounded-button ui-button-success"
+							oncomplete="PF('myDialogVar').show();" update="modificar">
+							<f:setPropertyActionListener target="#{ventaBean.detalle}"
+								value="#{detalle2}" />
+							<f:setPropertyActionListener target="#{ventaBean.producto}"
+								value="#{detalle2.idProducto}" />
+							<f:setPropertyActionListener target="#{ventaBean.venta}"
+								value="#{detalle2.idVenta}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</h:form>
+		<h:form id="modificar">
+			<p:dialog
+				header="Actualizar detalles con ID #{ventaBean.detalle.idDetalle}"
+				id="myDialogVar" widgetVar="myDialogVar" resizable="true"
+				showEffect="fade" modal="true">
+				<label for="tipo">Tipo de producto</label>
+				<br />
+				<h:inputHidden value="#{ventaBean.detalle.idDetalle}" />
+				<p:selectOneMenu class="m-1"
+					value="#{ventaBean.producto.id_producto}">
+					<f:selectItems value="#{ventaBean.listaProductos}" var="p"
+						itemValue="#{p.id_producto}" itemLabel="#{p.nombre}"></f:selectItems>
+				</p:selectOneMenu>
+				<br />
+
+
+				<label for="cantidad">Cantidad</label>
+				<br />
+				<p:inputText type="number" class="m-1" id="cantidad"
+					value="#{ventaBean.detalle.cantidad}"></p:inputText>
+				<br />
+				<br />
+
+				<label for="Venta">Id de la venta</label>
+				<br />
+				<p:selectOneMenu id="Venta" class="m-1"
+					value="#{ventaBean.venta.id}">
+					<f:selectItems value="#{ventaBean.listaVentas}" var="p"
+						itemValue="#{p.id}" itemLabel="#{p.id}"></f:selectItems>
+				</p:selectOneMenu>
+				<br />
+				<p:commandButton value="Actualizar"
+					action="#{ventaBean.actualizarDetalle()}"
+					class="btn btn-secondary btn-lg text-center m-5"></p:commandButton>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

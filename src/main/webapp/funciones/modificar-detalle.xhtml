@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="style2.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="stylesheet"
+		href="https://unpkg.com/primeflex@3.1.2/primeflex.css" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>El Gran Madrugón - Dashboard Administrador</title>
+	<link rel="icon" href="../resources/img/logo3.png" />
+</h:head>
+<h:body>
+	<h:form rendered="#{ventaBean.list2[0]}">
+		<p:dialog header="Actualizar detalles con ID #{detalle.idDetalle}"
+			id="myDialogVar" widgetVar="myDialogVar" height="400" width="900"
+			showEffect="fade" modal="true">
+			<label for="tipo">Tipo de producto</label>
+			<br />
+			<p:selectOneMenu class="form-control"
+				value="#{detalle.idProducto.id_producto}">
+				<f:selectItems value="#{ventaBean.listaProductos}" var="p"
+					itemValue="#{p.id_producto}" itemLabel="#{p.nombre}"></f:selectItems>
+			</p:selectOneMenu>
+			<br />
+
+
+			<label for="cantidad">Cantidad</label>
+			<br />
+			<p:inputText type="number" class="form-control" id="cantidad"
+				placeholder="100" required="true" value="#{ventaBean.detalle.cantidad}"></p:inputText>
+			<br />
+			<br />
+
+			<p:commandButton value="Actualizar"
+				action="#{ventaBean.actualizarDetalle(detalle)}"
+				class="btn btn-secondary btn-lg text-center ml-5mr-5" update="form1"></p:commandButton>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

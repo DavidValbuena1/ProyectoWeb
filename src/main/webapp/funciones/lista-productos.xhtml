@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 mt-5 text">Lista de productos</h1>
+		<div class="grid ml-5">
+			<div class="md:col-1 lg:col-1"></div>
+			<div
+				class="col-12 md:col-11 lg:col-12 shadow-8 border-round surface-overlay p-5 bg-white">
+				<h:form>
+					<p:toolbar>
+						<p:toolbarGroup frozenrows="2">
+							<p:commandButton value="Nuevo" icon="pi pi-plus"
+								action="#{productoBean.nuevo()}" ajax="false"
+								styleClass="ui-button-primary" style="margin-right: .5rem">
+							</p:commandButton>
+							<p:commandButton value="Excel" icon="pi pi-file-excel"
+								styleClass="ui-button-success">
+								<p:dataExporter type="xls" target="tabla"
+									fileName="Lista de ventas" visibleOnly="true"
+									options="#{ventaBean.excelOpt}" />
+							</p:commandButton>
+							<p:commandButton value="PDF" icon="pi pi-file-pdf"
+								styleClass="ml-2 ui-button-danger">
+								<p:dataExporter type="pdf" target="tabla"
+									fileName="Lista de ventas" visibleOnly="true"
+									options="#{ventaBean.pdfOpt}" />
+							</p:commandButton>
+						</p:toolbarGroup>
+
+						<p:toolbarGroup align="right">
+							<div class="p-d-flex p-jc-between p-ai-center">
+								<div>
+									<p:commandButton value="Reiniciar Tabla" styleClass="mr-2"
+										action="#{productoBean.reiniciarTabla}" update="@form" />
+									<p:commandButton id="toggler" type="button" value="Columnas"
+										icon="pi pi-align-justify" />
+									<p:columnToggler datasource="tabla" trigger="toggler">
+										<p:ajax event="toggle" listener="#{productoBean.onToggle}" />
+									</p:columnToggler>
+								</div>
+							</div>
+						</p:toolbarGroup>
+					</p:toolbar>
+					<p:dataTable value="#{productoBean.encontrarTodos()}" id="tabla"
+						var="producto" widgetVar="tabla" border="1" rows="10"
+						paginator="true" paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+						rowsPerPageTemplate="5,10,15,{ShowAll|'Todos'}" reflow="true"
+						styleClass="mt-4 text-center" draggableColumns="true"
+						draggableRows="true" showGridlines="true" scrollable="true"
+						scrollWidth="200%" resizableColumns="true">
+
+						<p:column headerText="Id" filterBy="#{producto.id_producto}"
+							visible="#{productoBean.list[0]}"
+							exportable="#{productoBean.list[0]}">
+							<h:outputText value="#{producto.id_producto}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.type.nombre}"
+							visible="#{productoBean.list[1]}"
+							exportable="#{productoBean.list[1]}">
+							<f:facet name="header">Tipo</f:facet>
+							<h:outputText value="#{producto.type.nombre}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.size}"
+							visible="#{productoBean.list[2]}"
+							exportable="#{productoBean.list[2]}">
+							<f:facet name="header">Tallas</f:facet>
+							<h:outputText value="#{producto.size}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.nombre}"
+							visible="#{productoBean.list[3]}"
+							exportable="#{productoBean.list[3]}">
+							<f:facet name="header">Nombre del producto</f:facet>
+							<h:outputText value="#{producto.nombre}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.reference}"
+							visible="#{productoBean.list[4]}"
+							exportable="#{productoBean.list[4]}">
+							<f:facet name="header">Referencias</f:facet>
+							<h:outputText value="#{producto.reference}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.quantity}"
+							visible="#{productoBean.list[5]}"
+							exportable="#{productoBean.list[5]}">
+							<f:facet name="header">Cantidad</f:facet>
+							<h:outputText value="#{producto.quantity}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.price}"
+							visible="#{productoBean.list[6]}"
+							exportable="#{productoBean.list[6]}">
+							<f:facet name="header">Precio por unidad</f:facet>
+							<h:outputText value="#{producto.price}">
+								<f:convertNumber currencySymbol="$" groupingUsed="true"
+									maxFractionDigits="0" type="currency" locale="es_CO" />
+							</h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.precioTotal}"
+							visible="#{productoBean.list[7]}"
+							exportable="#{productoBean.list[7]}">
+							<f:facet name="header">Precio total</f:facet>
+							<h:outputText value="#{producto.precioTotal}">
+								<f:convertNumber currencySymbol="$" groupingUsed="true"
+									maxFractionDigits="0" type="currency" locale="es_CO" />
+							</h:outputText>
+						</p:column>
+						<p:column filterBy="#{producto.date}"
+							visible="#{productoBean.list[8]}"
+							exportable="#{productoBean.list[8]}">
+							<f:facet name="header">Fecha de entrada</f:facet>
+							<h:outputText value="#{producto.date}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{producto.proveedor.nombre}"
+							visible="#{productoBean.list[9]}"
+							exportable="#{productoBean.list[9]}">
+							<f:facet name="header">Nombre del proveedor</f:facet>
+							<h:outputText value="#{producto.proveedor.nombre}"></h:outputText>
+						</p:column>
+
+						<p:column exportable="false" visible="#{productoBean.list[10]}">
+							<f:facet name="header">Acciones</f:facet>
+							<p:commandButton icon="pi pi-pencil"
+								styleClass="edit-button rounded-button ui-button-success"
+								action="#{productoBean.encontrar(producto.id_producto,producto)}">
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash" update="message,tabla"
+								action="#{productoBean.delete(producto.id_producto)}">
+								<p:confirm header="Confirmation"
+									message="¿Seguro quieres borrar esto?" icon="pi pi-info-circle" />
+							</p:commandButton>
+							<p:growl id="message" showDetail="true" />
+						</p:column>
+					</p:dataTable>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						responsive="true" width="350">
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no ui-button-flat" />
+						<p:commandButton value="Si" type="button"
+							styleClass="ui-confirmdialog-yes" />
+					</p:confirmDialog>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

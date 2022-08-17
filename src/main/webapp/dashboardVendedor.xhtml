@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="funcionesvendedor/template/template3.xhtml">
+	<ui:define name="contenido">
+		<div class="grid mt-5">
+			<div class="lg:col-1"></div>
+			<div class="col-12 md:col-6 lg:col-3">
+				<div class="bg-white surface-card shadow-6 p-3 border-round">
+					<div class="flex justify-content-between mb-3">
+						<div>
+							<span class="block text-500 font-medium mb-3">Pedidos</span>
+							<div class="text-900 font-medium text-xl">2</div>
+						</div>
+						<div
+							class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+							style="width: 2.5rem; height: 2.5rem">
+							<i class="pi pi-inbox text-cyan-500 text-xl" />
+						</div>
+					</div>
+					<span
+						class="text-500">Tenemos 2 pedidos sin asignar<br/> vamos a hacerlo!</span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-4">
+				<div class="bg-white surface-card shadow-6 p-3 border-round">
+					<div class="flex justify-content-between mb-3">
+						<div>
+							<span class="block text-500 font-medium mb-3">Ventas</span>
+							<div class="text-900 font-medium text-xl">
+								<h:outputText value="#{ventaBean.sumarVentas()}">
+									<f:convertNumber currencySymbol="$" groupingUsed="true"
+										maxFractionDigits="0" type="currency" locale="es_CO" />
+								</h:outputText>
+							</div>
+						</div>
+						<div
+							class="flex align-items-center justify-content-center bg-orange-100 border-round"
+							style="width: 2.5rem; height: 2.5rem">
+							<i class="pi pi-map-marker text-orange-500 text-xl" />
+						</div>
+					</div>
+					<span class="texto-verde font-medium text-center">Las ventas
+						aumentaron un 15% la última semana </span>
+				</div>
+			</div>
+			<div class="col-12 md:col-6 lg:col-3">
+				<div class="bg-white surface-card shadow-6 p-3 border-round">
+					<div class="flex justify-content-between mb-3">
+						<div>
+							<span class="block text-500 font-medium mb-3">Ventas</span>
+							<div class="text-900 font-medium text-xl">25</div>
+						</div>
+						<div
+							class="flex align-items-center justify-content-center bg-purple-100 border-round"
+							style="width: 2.5rem; height: 2.5rem">
+							<i class="pi pi-comment text-purple-500 text-xl" />
+						</div>
+					</div>
+					<span
+						class="text-500">Haz realizado 25 ventas este mes<br/> vamos por más!</span>
+				</div>
+			</div>
+			<div class="lg:col-1"></div>
+		</div>
+		<div class="grid mt-5 mb-5">
+			<h:form>
+				<div class="lg:col-1"></div>
+				<div class="lg:col-5 bg-white shadow-6">
+
+					<p:barChart model="#{adminView.barModel2}"
+						style="width: 100%; height: 550px;">
+
+					</p:barChart>
+
+				</div>
+				<div class="lg:col-5 bg-white ml-5 shadow-6">
+					<p:donutChart model="#{adminView.donutModel}"
+						style="width: 200; height: 200px;">
+					</p:donutChart>
+				</div>
+				<div class="lg:col-1"></div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

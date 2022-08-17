@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form class="mt-2 align-items-center">
+			<div class="grid">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="formgrid grid">
+						<div class="bg-white mt-5 shadow-8">
+							<h1 class="text-center mb-5 pt-5">Registrar Usuario</h1>
+							<div class="grid mr-5 ml-5 mb-3">
+								<div class="field col-12 md:col-4">
+									<h:outputText for="tipodocumento" value="Tipo de documento" />
+									<br />
+									<p:selectOneMenu id="tipodocumento"
+										value="#{usuarioBean.tipoDocumento.idTipoDocumento}"
+										class="focus:border-primary shadow-4" style="width: 18em;">
+										<f:selectItems value="#{usuarioBean.listaDocumentos}"
+											var="documentos" itemValue="#{documentos.idTipoDocumento}"
+											itemLabel="#{documentos.nombre}" />
+									</p:selectOneMenu>
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="numIdentificacion"
+										value="Número de identificación" />
+									<br />
+									<p:inputText id="numIdentificacion"
+										value="#{usuarioBean.usuario.num_Identificacion_usuario}"
+										class="focus:border-primary shadow-4" style="width: 18em;"></p:inputText>
+								</div>
+								<div class="field col-12 md:col-4">
+									<h:outputText for="nombreproducto" value="Nombres" />
+									<br />
+									<p:inputText id="nombreproducto"
+										class="focus:border-primary shadow-4"
+										value="#{usuarioBean.usuario.nombres}" style="width: 18em;"></p:inputText>
+
+								</div>
+							</div>
+
+
+
+							<div class="grid mr-5 ml-5 mb-3">
+								<div class="field col-12 md:col-4">
+									<h:outputText for="apellidos" value="Apellidos" />
+									<br />
+									<p:inputText id="apellidos"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{usuarioBean.usuario.apellidos}"></p:inputText>
+
+								</div>
+
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="correo" value="Correo" />
+									<br />
+									<p:inputText id="correo" class="focus:border-primary shadow-4"
+										style="width: 18em;" value="#{usuarioBean.usuario.correo}"></p:inputText>
+
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="telefono" value="Telefono" />
+									<br />
+									<p:inputText id="telefono"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{usuarioBean.usuario.telefono}"></p:inputText>
+
+								</div>
+							</div>
+
+							<div class="grid mr-5 ml-5 mb-2">
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="direccion" value="Dirección" />
+									<br />
+									<p:inputText class="focus:border-primary shadow-4"
+										style="width: 18em;" value="#{usuarioBean.usuario.direccion}" />
+
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="fecha" value="Fecha de nacimiento" />
+									<br />
+									<p:datePicker id="fecha" value="#{usuarioBean.usuario.fecha}"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										pattern="yyyy/MM/dd" placeholder="2002/07/31"
+										monthNavigator="true" yearNavigator="true" numberOfMonths="2"
+										autocomplete="off" />
+
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="rol" value="Rol" />
+									<br />
+									<p:selectOneMenu value="#{usuarioBean.rol.id}"
+										class="focus:border-primary shadow-4" style="width: 18em;">
+										<f:selectItems value="#{usuarioBean.listaRoles}"
+											var="documentos" itemValue="#{documentos.id}"
+											itemLabel="#{documentos.nombre}" />
+									</p:selectOneMenu>
+
+								</div>
+							</div>
+							<div class="grid mr-5 ml-5 mb-3">
+								<div class="field col-1 md:col-1"></div>
+								<div class="field col-12 md:col-5">
+									<h:outputText for="contraseña" value="Contraseña" />
+									<br />
+									<p:inputText id="contraseña"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{usuarioBean.usuario.contraseña}" />
+
+								</div>
+								<div class="field col-1 md:col-1"></div>
+								<div class="field col-12 md:col-5">
+									<h:outputText for="confirmar" value="Confirmar contraseña" />
+									<br />
+									<p:inputText id="confirmar"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{usuarioBean.usuario.confirmar}" />
+
+								</div>
+							</div>
+
+
+							<div class="grid m-5">
+								<div class="field col-1 md:col-4"></div>
+								<div class="field col-12 md:col-2">
+									<h:commandButton value="Crear" action="#{usuarioBean.crear()}" class="cursor-pointer bg-primary border-transparent text-base" style="width: 9em; height: 2.6em;">
+									</h:commandButton>
+								</div>
+								<div class="field col-12 md:col-2">
+									<h:commandButton type="reset" value="Reiniciar" class="cursor-pointer bg-primary border-transparent text-base" style="width: 9em; height: 2.6em;"/>
+								</div>
+								<div class="field col-1 md:col-3"></div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+
+	<ui:define name="contenido">
+		<h1 class="text-center mb-5 text">Usuarios Registrados</h1>
+		<div class="grid ml-5">
+			<div class="md:col-1 lg:col-1"></div>
+			<div
+				class="col-12 md:col-11 lg:col-12 shadow-8 border-round surface-overlay p-5 bg-white">
+				<h:form>
+					<p:toolbar>
+						<p:toolbarGroup frozenrows="2">
+							<p:commandButton value="New" icon="pi pi-plus"
+								action="#{usuarioBean.nuevo()}" ajax="false"
+								styleClass="ui-button-primary" style="margin-right: .5rem">
+							</p:commandButton>
+							<p:commandButton value="Excel" icon="pi pi-file-excel"
+								styleClass="ui-button-success">
+								<p:dataExporter type="xls" target="tabla"
+									fileName="Lista de usuarios" visibleOnly="true"
+									options="#{ventaBean.excelOpt}" />
+							</p:commandButton>
+							<p:commandButton value="PDF" icon="pi pi-file-pdf"
+								styleClass="ml-2 ui-button-danger">
+								<p:dataExporter type="pdf" target="tabla"
+									fileName="Lista de usuarios" visibleOnly="true"
+									options="#{ventaBean.pdfOpt}" />
+							</p:commandButton>
+						</p:toolbarGroup>
+
+						<p:toolbarGroup align="right">
+							<div class="p-d-flex p-jc-between p-ai-center">
+								<div>
+									<p:commandButton value="Reiniciar Tabla" styleClass="mr-2"
+										action="#{usuarioBean.reiniciarTabla}" update="@form" />
+									<p:commandButton id="toggler" type="button" value="Columnas"
+										icon="pi pi-align-justify" />
+									<p:columnToggler datasource="tabla" trigger="toggler">
+										<p:ajax event="toggle" listener="#{usuarioBean.onToggle}" />
+									</p:columnToggler>
+								</div>
+							</div>
+						</p:toolbarGroup>
+					</p:toolbar>
+					<p:dataTable id="tabla" var="usuario"
+						value="#{usuarioBean.encontrarTodos()}" border="1" rows="10"
+						paginator="true" paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} usuarios registrados"
+						rowsPerPageTemplate="5,10,15,{ShowAll|'Todos'}" reflow="true"
+						styleClass="tabla" draggableColumns="true" draggableRows="true"
+						showGridlines="true" resizableColumns="true" scrollable="true"
+						scrollWidth="200%">
+
+						<p:column headerText="Id" filterBy="#{usuario.id_usuario}"
+							visible="#{usuarioBean.list[0]}"
+							exportable="#{usuarioBean.list[0]}">
+							<h:outputText type="text" value="#{usuario.id_usuario}" />
+						</p:column>
+
+						<p:column headerText="Tipo de documento"
+							filterBy="#{usuario.tipoDocumento.nombre}"
+							visible="#{usuarioBean.list[1]}"
+							exportable="#{usuarioBean.list[1]}">
+							<h:outputText value="#{usuario.tipoDocumento.nombre}" />
+						</p:column>
+
+						<p:column headerText="Numero de identificación"
+							filterBy="#{usuario.num_Identificacion_usuario}"
+							visible="#{usuarioBean.list[2]}"
+							exportable="#{usuarioBean.list[2]}">
+							<h:outputText value="#{usuario.num_Identificacion_usuario}" />
+						</p:column>
+
+						<p:column headerText="Nombres" filterBy="#{usuario.nombres}"
+							visible="#{usuarioBean.list[3]}"
+							exportable="#{usuarioBean.list[3]}">
+							<h:outputText value="#{usuario.nombres}" />
+						</p:column>
+
+						<p:column headerText="Apellidos" filterBy="#{usuario.apellidos}"
+							visible="#{usuarioBean.list[4]}"
+							exportable="#{usuarioBean.list[4]}">
+							<h:outputText value="#{usuario.apellidos}" />
+						</p:column>
+
+						<p:column headerText="Correo" filterBy="#{usuario.correo}"
+							visible="#{usuarioBean.list[5]}"
+							exportable="#{usuarioBean.list[5]}">
+							<h:outputText value="#{usuario.correo}" />
+						</p:column>
+
+						<p:column headerText="Telefono" filterBy="#{usuario.telefono}"
+							visible="#{usuarioBean.list[6]}"
+							exportable="#{usuarioBean.list[6]}">
+							<h:outputText value="#{usuario.telefono}" />
+						</p:column>
+
+						<p:column headerText="Direccion" filterBy="#{usuario.direccion}"
+							visible="#{usuarioBean.list[7]}"
+							exportable="#{usuarioBean.list[7]}">
+							<h:outputText value="#{usuario.direccion}" />
+						</p:column>
+
+						<p:column headerText="Fecha de nacimiento"
+							filterBy="#{usuario.fecha}" visible="#{usuarioBean.list[8]}"
+							exportable="#{usuarioBean.list[8]}">
+							<h:outputText value="#{usuario.fecha}" />
+						</p:column>
+
+						<p:column headerText="Rol" filterBy="#{usuario.rol.nombre}"
+							visible="#{usuarioBean.list[9]}"
+							exportable="#{usuarioBean.list[9]}">
+							<h:outputText value="#{usuario.rol.nombre}" />
+						</p:column>
+
+						<p:column visible="#{usuarioBean.list[10]}"
+							exportable="false">
+							<f:facet name="header">Acciones</f:facet>
+							<p:commandButton icon="pi pi-pencil"
+								styleClass="edit-button rounded-button ui-button-success"
+								action="#{usuarioBean.encontrar(usuario.id_usuario,usuario)}">
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash"
+								action="#{usuarioBean.borrar(usuario.id_usuario)}">
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

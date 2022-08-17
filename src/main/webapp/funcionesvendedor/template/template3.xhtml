@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="style2.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="stylesheet"
+		href="https://unpkg.com/primeflex@3.1.2/primeflex.css" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>El Gran Madrugón - Dashboard Vendedor</title>
+	<link rel="icon" href="resources/img/logo3.png" />
+</h:head>
+<h:body>
+	<h:form rendered="#{loginBean.verificarSesion()}">
+		<nav class="sidebar close">
+			<header>
+				<div class="image-text">
+					<span class="image"> <h:graphicImage library="images"
+							value="resources/img/administrador.png" /></span>
+
+					<div class="text logo-text">
+						<span class="name">David Valbuena</span> <span class="profession">Vendedor</span>
+					</div>
+				</div>
+
+				<i class='pi pi-arrow-circle-right toggle'></i>
+			</header>
+
+			<div class="menu-bar">
+				<div class="menu">
+				<li class="search-box"><i class='pi pi-search icon'></i> <input
+					type="text" placeholder="Search..."/></li>
+					<ul class="menu-links">
+						<li class="nav-link"><a href="dashboardVendedor.xhtml"><i
+								class='pi pi-home icon'></i><span class="text nav-text">Home</span></a></li>
+						<li class="nav-link"><a
+							href="funcionesvendedor/lista-domicilios.xhtml"> <i
+								class='pi pi-car icon'></i> <span class="text nav-text">Domicilios</span>
+						</a></li>
+
+						<li class="nav-link"><a
+							href="funcionesvendedor/lista-pedidos.xhtml"> <i
+								class='pi pi-box icon'></i> <span class="text nav-text">Pedidos</span>
+						</a></li>
+
+						<li class="nav-link"><a
+							href="funcionesvendedor/lista-productos.xhtml"> <i
+								class='pi pi-folder icon'></i> <span class="text nav-text">Productos</span>
+						</a></li>
+
+						<li class="nav-link"><a
+							href="funcionesvendedor/lista-ventas.xhtml"> <i
+								class='pi pi-shopping-bag icon'></i> <span class="text nav-text">Ventas</span>
+						</a></li>
+					</ul>
+				</div>
+
+				<div class="bottom-content">
+					<li class=""><A><i class='pi pi-sign-out icon'></i> <p:commandButton
+								class="bg text nav-text" action="#{loginBean.cerrarSesion()}"
+								value="Logout" /></A></li>
+
+					<li class="mode">
+						<div class="sun-moon">
+							<i class='bx bx-moon icon moon'></i> <i
+								class='bx bx-sun icon sun'></i>
+						</div> <span class="mode-text text">Dark mode</span>
+
+						<div class="toggle-switch">
+							<span class="switch"></span>
+						</div>
+					</li>
+
+				</div>
+			</div>
+
+		</nav>
+
+		<section class="home">
+			<ui:insert name="contenido"></ui:insert>
+		</section>
+	</h:form>
+	<h:outputScript library="js" name="script.js" />
+</h:body>
+</html>

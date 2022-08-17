@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 text">Lista de proveedores</h1>
+		<div class="grid ml-5">
+			<div class="md:col-1 lg:col-1"></div>
+			<div
+				class="col-12 md:col-11 lg:col-12 shadow-8 border-round surface-overlay p-5 bg-white">
+				<h:form>
+					<p:toolbar>
+						<p:toolbarGroup frozenrows="2">
+							<p:commandButton value="Nuevo" icon="pi pi-plus"
+								action="#{proveedorBean.nuevo()}" ajax="false"
+								styleClass="ui-button-primary" style="margin-right: .5rem">
+							</p:commandButton>
+							<p:commandButton value="Excel" icon="pi pi-file-excel"
+								styleClass="ui-button-success">
+								<p:dataExporter type="xls" target="proveedor"
+									fileName="Lista de proveedores" visibleOnly="true"
+									options="#{ventaBean.excelOpt}" />
+							</p:commandButton>
+							<p:commandButton value="PDF" icon="pi pi-file-pdf"
+								styleClass="ml-2 ui-button-danger">
+								<p:dataExporter type="pdf" target="proveedor"
+									fileName="Lista de proveedores" visibleOnly="true"
+									options="#{ventaBean.pdfOpt}" />
+							</p:commandButton>
+						</p:toolbarGroup>
+
+						<p:toolbarGroup align="right">
+							<div class="p-d-flex p-jc-between p-ai-center">
+								<div>
+									<p:commandButton value="Reiniciar Tabla" styleClass="mr-2"
+										action="#{proveedorBean.reiniciarTabla}" update="@form" />
+									<p:commandButton id="toggler" type="button" value="Columnas"
+										icon="pi pi-align-justify" />
+									<p:columnToggler datasource="proveedor" trigger="toggler">
+										<p:ajax event="toggle" listener="#{proveedorBean.onToggle}" />
+									</p:columnToggler>
+								</div>
+							</div>
+						</p:toolbarGroup>
+					</p:toolbar>
+					<p:dataTable value="#{proveedorBean.encontrar()}" id="proveedor"
+						var="proveedor" widgetVar="tabla" border="1" rows="10"
+						paginator="true" paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+						rowsPerPageTemplate="5,10,15,{ShowAll|'Todos'}" reflow="true"
+						styleClass="mt-4" showGridlines="true" scrollable="true"
+						resizableColumns="true" scrollWidth="250%">
+						
+						<p:column headerText="Id" filterBy="#{proveedor.id_proveedor}"
+							visible="#{proveedorBean.list[0]}"
+							exportable="#{proveedorBean.list[0]}">
+							<h:outputText value="#{proveedor.id_proveedor}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.nombre}"
+							visible="#{proveedorBean.list[1]}"
+							exportable="#{proveedorBean.list[1]}">
+							<f:facet name="header">Nombres</f:facet>
+							<h:outputText value="#{proveedor.nombre}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.nombreEmpresa}"
+							visible="#{proveedorBean.list[2]}"
+							exportable="#{proveedorBean.list[2]}">
+							<f:facet name="header">Nombre de la empresa</f:facet>
+							<h:outputText value="#{proveedor.nombreEmpresa}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.direccion1}"
+							visible="#{proveedorBean.list[3]}"
+							exportable="#{proveedorBean.list[3]}">
+							<f:facet name="header">Dirección Principal</f:facet>
+							<h:outputText value="#{proveedor.direccion1}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.direccion2}"
+							visible="#{proveedorBean.list[4]}"
+							exportable="#{proveedorBean.list[4]}">
+							<f:facet name="header">Dirección Secundaria</f:facet>
+							<h:outputText value="#{proveedor.direccion2}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.correo1}"
+							visible="#{proveedorBean.list[5]}"
+							exportable="#{proveedorBean.list[5]}">
+							<f:facet name="header">Correo Principal</f:facet>
+							<h:outputText value="#{proveedor.correo1}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.correo2}"
+							visible="#{proveedorBean.list[6]}"
+							exportable="#{proveedorBean.list[6]}">
+							<f:facet name="header">Correo Secundario</f:facet>
+							<h:outputText value="#{proveedor.correo2}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.nit}"
+							visible="#{proveedorBean.list[7]}"
+							exportable="#{proveedorBean.list[7]}">
+							<f:facet name="header">NIT</f:facet>
+							<h:outputText value="#{proveedor.nit}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.categoria.nombre}"
+							visible="#{proveedorBean.list[8]}"
+							exportable="#{proveedorBean.list[8]}">
+							<f:facet name="header">Categoría</f:facet>
+							<h:outputText value="#{proveedor.categoria.nombre}"></h:outputText>
+						</p:column>
+						<p:column filterBy="#{proveedor.ciudad}"
+							visible="#{proveedorBean.list[9]}"
+							exportable="#{proveedorBean.list[9]}">
+							<f:facet name="header">Ciudad</f:facet>
+							<h:outputText value="#{proveedor.ciudad}"></h:outputText>
+						</p:column>
+						<p:column visible="#{proveedorBean.list[10]}" exportable="false">
+							<f:facet name="header">Acciones</f:facet>
+							<p:commandButton icon="pi pi-pencil"
+								styleClass="edit-button rounded-button ui-button-success"
+								action="#{proveedorBean.encontrarId(proveedor.id_proveedor,proveedor)}">
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash" update="message,proveedor"
+								action="#{proveedorBean.borrar(proveedor.id_proveedor)}">
+								<p:confirm header="Confirmation"
+									message="¿Seguro quieres borrar esto?" icon="pi pi-info-circle" />
+							</p:commandButton>
+							<p:growl id="message" showDetail="true" />
+						</p:column>
+					</p:dataTable>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						responsive="true" width="350">
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no ui-button-flat" />
+						<p:commandButton value="Si" type="button"
+							styleClass="ui-confirmdialog-yes" />
+					</p:confirmDialog>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

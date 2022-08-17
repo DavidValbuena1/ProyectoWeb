@@ -1,0 +1,93 @@
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template.xhtml">
+	<ui:define name="contenido">
+		<h:form class="mt-2 align-items-center">
+			<div class="grid">
+				<div class="col-1"></div>
+				<div class="col-10">
+
+					<div class="formgrid grid">
+
+						<div class="bg-white mt-5 shadow-8">
+
+
+							<h1 class="text-center mb-3 pt-3 text">Registrar una orden
+								de compra</h1>
+							<div class="grid mr-5 ml-5 mb-5">
+								<div class="field col-12 md:col-4">
+									<h:outputText for="nombre"
+										value="Fecha" />
+									<br />
+									<p:datePicker for="entrega"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{orden.fecha}"
+										pattern="yyyy/MM/dd" />
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText value="Seleccione el proveedor" for="empresa" />
+									<br />
+									<p:selectOneMenu id="empresa"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{ordenBean.proveedor.id_proveedor}">
+										
+										<f:selectItems value="#{ordenBean.listaProveedores}"
+											var="p" itemValue="#{p.id_proveedor}" itemLabel="#{p.nombre}"></f:selectItems>
+									</p:selectOneMenu>
+
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="direccion" value="Cantidad" />
+									<BR />
+									<p:inputText id="direccion"
+										class="focus:border-primary shadow-4" style="width: 18em;"
+										value="#{orden.cantidadProductos}"></p:inputText>
+
+								</div>
+							</div>
+
+							<div class="grid mr-5 ml-5 mb-5">
+							<div class="fiel col-1 md:col-2"></div>
+								<div class="field col-12 md:col-4">
+									<h:outputText for="direccion2"
+										value="Precio por unidad" />
+									<br />
+									<p:inputText class="focus:border-primary shadow-4"
+										style="width: 18em;"
+										value="#{orden.precioUnidad}"></p:inputText>
+
+								</div>
+
+								<div class="field col-12 md:col-4">
+									<h:outputText for="correo" value="Observaciones" />
+									<br />
+									<p:inputTextarea id="correo" class="focus:border-primary shadow-4"
+										style="width: 18em;"
+										value="#{orden.observaciones}"></p:inputTextarea>
+								</div>
+							</div>
+
+							<div class="grid m-5">
+								<div class="field col-1 md:col-4"></div>
+								<div class="field col-12 md:col-2">
+									<p:commandButton class="border-transparent text-base"
+										style="height: 2.6em; width: 8em;" value="Registrar"
+										action="#{ordenBean.editar(orden)}"></p:commandButton>
+								</div>
+								<div class="field col-1 md:col-5"></div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

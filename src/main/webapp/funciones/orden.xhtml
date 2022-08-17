@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template2.xhtml">
+	<ui:define name="contenido">
+		<h1 class="text-center mb-2 mt-5 text">Ordenes de compra</h1>
+		<h:form>
+			<div class="shadow-8 border-round surface-overlay p-5 bg-white">
+				<p:toolbar>
+					<p:toolbarGroup frozenrows="2">
+						<p:commandButton value="Nuevo" icon="pi pi-plus"
+							action="#{ordenBean.nuevo()}" ajax="false"
+							styleClass="ui-button-primary" style="margin-right: .5rem">
+						</p:commandButton>
+						<p:commandButton value="Excel" icon="pi pi-file-excel"
+							styleClass="ui-button-success">
+							<p:dataExporter type="xls" target="tabla"
+								fileName="Lista de ordenes" visibleOnly="true"
+								options="#{ventaBean.excelOpt}" />
+						</p:commandButton>
+						<p:commandButton value="PDF" icon="pi pi-file-pdf"
+							styleClass="ml-2 ui-button-danger">
+							<p:dataExporter type="pdf" target="tabla"
+								fileName="Lista de ordenes" visibleOnly="true"
+								options="#{ventaBean.pdfOpt}" />
+						</p:commandButton>
+					</p:toolbarGroup>
+
+					<p:toolbarGroup align="right">
+						<div class="p-d-flex p-jc-between p-ai-center">
+							<div>
+								<p:commandButton value="Reiniciar Tabla" styleClass="mr-2"
+									action="#{ordenBean.reiniciarTabla}" update="@form" />
+								<p:commandButton id="toggler" type="button" value="Columnas"
+									icon="pi pi-align-justify" />
+								<p:columnToggler datasource="tabla" trigger="toggler">
+									<p:ajax event="toggle" listener="#{ordenBean.onToggle}" />
+								</p:columnToggler>
+							</div>
+						</div>
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:dataTable value="#{ordenBean.encontrarTodos()}" id="tabla"
+					var="orden" widgetVar="tabla" border="1" rows="10" paginator="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+					rowsPerPageTemplate="5,10,15,{ShowAll|'Todos'}" reflow="true"
+					styleClass="mt-4 text-center" draggableColumns="true"
+					draggableRows="true" showGridlines="true">
+
+					<p:column headerText="Id" filterBy="#{orden.idOrden}"
+						visible="#{ordenBean.list[0]}" exportable="#{ordenBean.list[0]}">
+						<h:outputText value="#{orden.idOrden}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.fecha}" visible="#{ordenBean.list[1]}"
+						exportable="#{ordenBean.list[1]}">
+						<f:facet name="header">Fecha</f:facet>
+						<h:outputText value="#{orden.fecha}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.cantidadProductos}"
+						visible="#{ordenBean.list[2]}" exportable="#{ordenBean.list[2]}">
+						<f:facet name="header">Cantidad</f:facet>
+						<h:outputText value="#{orden.cantidadProductos}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.proveedor.nombre}"
+						visible="#{ordenBean.list[3]}" exportable="#{ordenBean.list[3]}">
+						<f:facet name="header">Nombre del proveedor</f:facet>
+						<h:outputText value="#{orden.proveedor.nombre}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.precioUnidad}"
+						visible="#{ordenBean.list[4]}" exportable="#{ordenBean.list[4]}">
+						<f:facet name="header">Precio por unidad</f:facet>
+						<h:outputText value="#{orden.precioUnidad}"><f:convertNumber currencySymbol="$" groupingUsed="true"
+								maxFractionDigits="0" type="currency" locale="es_CO" /></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.precioTotal}"
+						visible="#{ordenBean.list[5]}" exportable="#{ordenBean.list[5]}">
+						<f:facet name="header">Precio Total</f:facet>
+						<h:outputText value="#{orden.precioTotal}"><f:convertNumber currencySymbol="$" groupingUsed="true"
+								maxFractionDigits="0" type="currency" locale="es_CO" /></h:outputText>
+					</p:column>
+					<p:column filterBy="#{orden.observaciones}"
+						visible="#{ordenBean.list[6]}" exportable="#{ordenBean.list[6]}">
+						<f:facet name="header">Observaciones</f:facet>
+						<h:outputText value="#{orden.observaciones}"></h:outputText>
+					</p:column>
+					<p:column exportable="false" visible="#{ordenBean.list[7]}">
+						<f:facet name="header">Acciones</f:facet>
+						<p:commandButton icon="pi pi-pencil"
+							styleClass="edit-button rounded-button ui-button-success"
+							action="#{ordenBean.encontrar(orden.idOrden,orden)}">
+						</p:commandButton>
+						<p:commandButton class="ui-button-warning rounded-button"
+							icon="pi pi-trash" update="message,tabla"
+							action="#{ordenBean.borrar(orden.idOrden)}">
+							<p:confirm header="Confirmation"
+								message="¿Seguro quieres borrar esto?" icon="pi pi-info-circle" />
+						</p:commandButton>
+						<p:growl id="message" showDetail="true" />
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

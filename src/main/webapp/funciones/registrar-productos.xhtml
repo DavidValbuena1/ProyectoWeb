@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<ui:composition lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="template/template.xhtml">
+	<ui:define name="contenido">
+		<h:form class="mt-2 align-items-center">
+			<div class="grid">
+				<div class="col-1 sm:col-1 md:col-1 lg:col-3 xl:col-3"></div>
+				<div class="col-10 sm:col-10 md:col-10 lg:col-6 xl:col-6">
+
+					<div class="bg-white mt-5 shadow-8">
+
+
+						<h1 class="text-center mb-3 pt-3 text">Registrar un producto</h1>
+						<div class="grid mr-4 ml-4 mb-1">
+							<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+								<h:outputText for="tipo" value="Categoría" />
+								<br />
+								<p:selectOneMenu id="tipo" class="focus:border-primary shadow-4"
+									value="#{productoBean.categoria.id}">
+									<f:selectItems value="#{productoBean.listaProductos}" var="p"
+										itemValue="#{p.id}" itemLabel="#{p.nombre}"></f:selectItems>
+								</p:selectOneMenu>
+
+							</div>
+							<div class="field col-12 sm:col-12 md:col-4 lg:col-3 xl:col-3"></div>
+
+							<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+								<h:outputText for="talla" value="Talla" />
+								<br />
+								<p:selectOneMenu id="talla"
+									class="focus:border-primary shadow-4"
+									value="#{productoBean.producto.size}">
+									<f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+									<f:selectItem itemValue="L" itemLabel="L"></f:selectItem>
+									<f:selectItem itemValue="S" itemLabel="S"></f:selectItem>
+									<f:selectItem itemValue="M" itemLabel="M"></f:selectItem>
+									<f:selectItem itemValue="XL" itemLabel="XL"></f:selectItem>
+								</p:selectOneMenu>
+							</div>
+						</div>
+						<div class="grid mr-4 ml-4 mb-1">
+							<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+								<h:outputText for="nombreproducto" value="Nombre del producto" />
+								<br />
+								<p:inputText id="nombreproducto"
+									class="focus:border-primary shadow-4"
+									placeholder="Escriba el nombre del producto" required="true"
+									value="#{productoBean.producto.nombre}"></p:inputText>
+
+							</div>
+							<div class="field col-12 md:col-3 lg:col-3 xl:col-3"></div>
+								<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+									<h:outputText for="idproveedor" value="Proveedor" />
+									<br />
+									<p:selectOneMenu id="idproveedor"
+										class="focus:border-primary shadow-4"
+										value="#{productoBean.proveedor.id_proveedor}">
+										<f:selectItems value="#{productoBean.listaProveedores}"
+											var="p" itemValue="#{p.id_proveedor}" itemLabel="#{p.nombre}"></f:selectItems>
+									</p:selectOneMenu>
+
+								</div>
+							</div>
+
+							<div class="grid mr-4 ml-4 mb-1">
+								<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+									<h:outputText for="ref" value="Referencia" />
+									<br />
+									<p:inputText id="ref" class="focus:border-primary shadow-4"
+										value="#{productoBean.producto.reference}"></p:inputText>
+
+								</div>
+								<div class="field col-12 md:col-3 lg:col-3 xl:col-3"></div>
+									<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+										<h:outputText for="cantidad" value="Cantidad" />
+										<br />
+										<p:inputText type="number" id="cantidad"
+											class="focus:border-primary shadow-4"
+											value="#{productoBean.producto.quantity}"></p:inputText>
+
+									</div>
+								</div>
+
+								<div class="grid mr-4 ml-4 mb-1">
+									<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+										<h:outputText for="preciounidad" value="Precio por unidad" />
+										<br />
+										<p:inputText type="number"
+											class="focus:border-primary shadow-4"
+											value="#{productoBean.producto.price}"></p:inputText>
+									</div>
+									<div class="field col-12 md:col-3 lg:col-3 xl:col-3"></div>
+									<div class="field col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
+										<p:commandButton class="border-transparent text-base"
+											style="height: 2.6em; width: 8em;" value="Crear"
+											action="#{productoBean.CrearProducto()}"></p:commandButton>
+										<br />
+										<br />
+										<p:commandButton type="reset"
+											class="border-transparent text-base"
+											style="height: 2.6em; width: 8em;" value="Limpiar"></p:commandButton>
+									</div>
+								</div>
+							</div>
+							<div class="col-10 sm:col-1 md:col-1 lg:col-1 xl:col-1"></div>
+						</div>
+					</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
